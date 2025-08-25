@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube AI Enhancer",
+  "version": "1.0",
+  "description": "Adds AI summaries and discovery features to YouTube",
+  "permissions": ["scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

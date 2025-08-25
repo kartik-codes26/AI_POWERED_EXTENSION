@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouTube AI Enhancer</title>
+  </head>
+  <body>
+    <h3>AI Extension Popup</h3>
+    <div id="title"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+          chrome.scripting.executeScript(
+            {
+              target: { tabId: tabs[0].id },
+              func: () => document.querySelector("h1.title")?.innerText,
+            },
+            (results) => {
+              if (results && results[0]) {
+                document.getElementById("title").innerText =
+                  "Video: " + results[0].result;
+              }
+            }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
